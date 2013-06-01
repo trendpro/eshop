@@ -1,0 +1,33 @@
+<% provide(:title,'Catalog')%>
+<% if notice %>
+	<p id="notice" ><%= notice %></p>
+<% end %>
+
+<div class="row">
+	<div class="large-10 columns">
+	<h1 class="subheader">Your eShop Catalog</h1>
+	
+	<ul class=" large-block-grid-4">
+	<% @products.each do |product| %>
+		<!-- Using both block grids together for different layouts -->
+		  <li>
+		  	<div class="entry" >
+				<%= image_tag(product.image_url) %>
+				<h3><%= product.title %></h3>
+				<%=sanitize truncate(product.description,
+					:length => 60) %>
+				<div class="price_line" >
+					<span class="success label" ><%= number_to_currency(product.price) %></span>
+				</div>
+			</div>	
+		  </li>
+	<% end %>
+	</ul>
+
+	</div>
+
+<div class="large-2 columns">
+	<h3 class="subheader">My sidebar</h3>
+	<p><%= l Time.now, :format => :short %></p>
+</div>
+</div>
