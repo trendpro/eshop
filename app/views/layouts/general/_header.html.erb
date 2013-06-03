@@ -25,29 +25,81 @@
       	</li>
       	
       	<li class="divider"></li>
+      	<% if admin_signed_in? %>
+      		<li>
+      			<%= link_to('Admin Logout', destroy_admin_session_path, :method=>'delete') %>
+      		</li>
+			
+		<%else%>
+			<li>
+				<%= link_to('Admin Login', admin_session_path) %>
+			</li>
+		<% end%>
       	
-      	
-      	<li class="has-dropdown"><a href="#">My Account</a>
+      	<% if admin_signed_in? %>
+	      	<li class="has-dropdown"><a href="#">Products</a>
+	
+	        <ul class="dropdown">
+	          <li>
+	    		<%= link_to('View Products', products_path) %>
+	    	  </li>
 
-        <ul class="dropdown">
-          <li>
-    		<%= link_to('Profile', '#') %>
-    	  </li>
-        	
-          <li>
-    		<%= link_to('Edit account', '#') %>
-    	  </li>
-    	  
-          <li class="divider"></li>
-          
-		  <li>
-    		<%= link_to('Logout', '#') %>
-    	  </li>
-    	  
-    	  <li class="divider"></li>
-    	  
-        </ul>
-      </li>
+	          <li class="divider"></li>
+	          
+			  <li>
+	    		<%= link_to('Create New', new_product_path) %>
+	    	  </li>
+	    	  
+	    	  <li class="divider"></li>
+	    	  
+	        </ul>
+	      </li>
+	      
+	      <!-- Menu for managing Orders-->
+	      <li class="has-dropdown"><a href="#">Orders</a>
+	
+	        <ul class="dropdown">
+	          <li>
+	    		<%= link_to('View Products', orders_path) %>
+	    	  </li>
+
+	          <li class="divider"></li>
+	          
+			  <li>
+	    		<%= link_to('Create New', '#') %>
+	    	  </li>
+	    	  
+	    	  <li class="divider"></li>
+	    	  
+	        </ul>
+	      
+	      <!-- Menu for managing users-->
+	      <li class="has-dropdown"><a href="#">Users</a>
+	
+	        <ul class="dropdown">
+	          <li>
+	    		<%= link_to('Create New Admin', new_admin_registration_path) %>
+	    	  </li>
+	        	
+	          <li>
+	    		<%= link_to('Edit account', edit_admin_registration_path) %>
+	    	  </li>
+	    	  
+	    	  <li>
+	    		<%= link_to('View All Admins', '') %>
+	    	  </li>
+	    	  
+	          <li class="divider"></li>
+	          
+			  <li>
+	    		<%= link_to('Admin Logout', destroy_admin_session_path, :method=>'delete') %>
+	    	  </li>
+	    	  
+	    	  <li class="divider"></li>
+	    	  
+	        </ul>
+	      </li>
+        <% end %>
       	
       
       <li class="divider"></li>

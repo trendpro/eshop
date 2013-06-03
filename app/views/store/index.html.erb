@@ -1,13 +1,8 @@
 <% provide(:title,'Catalog')%>
-<% if notice %>
-	<p id="notice" ><%= notice %></p>
-<% end %>
 
-<div class="row">
-	<div class="large-10 columns">
-	<h1 class="subheader">Your eShop Catalog</h1>
+	<h1 class="subheader">My eShop Catalog</h1>
 	
-	<ul class=" large-block-grid-4">
+	<ul class=" large-block-grid-3">
 	<% @products.each do |product| %>
 		<!-- Using both block grids together for different layouts -->
 		  <li>
@@ -17,17 +12,23 @@
 				<%=sanitize truncate(product.description,
 					:length => 60) %>
 				<div class="price_line" >
-					<span class="success label" ><%= number_to_currency(product.price) %></span>
+					 <div class="row">
+			          <div class="small-4 columns">
+			          	<div class="success label"> <%= number_to_currency(product.price) %> </div>
+			          </div>
+			          <div class="small-1 columns">
+			          	
+			          </div>
+			          <div class="small-6 columns">
+			          	<%= button_to 'Add to Cart' , line_items_path(:product_id => product),
+					 		:class => "button", :remote => true %>
+			          </div><div class="small-1 columns">
+			          	
+			          </div>
+			        </div>
+					 
 				</div>
 			</div>	
 		  </li>
 	<% end %>
 	</ul>
-
-	</div>
-
-<div class="large-2 columns">
-	<h3 class="subheader">My sidebar</h3>
-	<p><%= l Time.now, :format => :short %></p>
-</div>
-</div>

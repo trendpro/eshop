@@ -1,0 +1,41 @@
+<% unless cart.line_items.empty? %>
+<h4 class="subheader">My Cart</h4>
+	
+<table>
+	<thead>
+		<tr>
+			<th width="150">
+				Quantity
+			</th>
+			<th width="250">
+				Item
+			</th>
+			<th width="200">
+				Total Cost
+			</th>
+		</tr>
+	</thead>
+	
+	<%= render(cart.line_items) %>
+	
+	<tr class="" >
+		<td colspan="2" >Total</td>
+		<td class="price" ><%= number_to_currency(cart.total_price) %></td>
+	</tr>
+</table>
+
+<div class="row">
+	<div class="small-6 columns">
+		<%= button_to 'Empty cart' , cart, :method => :delete,
+			:confirm => 'Are you sure?',:class => "button alert" %>
+	</div>
+	<div class="small-2 columns">
+		
+	</div>
+	<div class="small-4 columns">
+		<%= button_to "Checkout" , new_order_path, :method => :get, :class => "button" %>
+	</div>>
+	
+</div>
+			
+<% end %>

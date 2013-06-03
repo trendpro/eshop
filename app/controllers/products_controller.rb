@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  
+  before_filter :authenticate_admin!
   # GET /products
   # GET /products.json
   def index
@@ -78,6 +80,16 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
+    end
+  end
+  
+  #Provides an RSS Atom feed...
+  def who_bought
+    @product = Product.find(params[:id])
+    
+    respond_to do |format|
+      format.atom
+      format.xml { render :xml => @product }
     end
   end
 end
