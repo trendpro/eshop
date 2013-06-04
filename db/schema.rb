@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603191035) do
+ActiveRecord::Schema.define(:version => 20130604200234) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -45,13 +45,27 @@ ActiveRecord::Schema.define(:version => 20130603191035) do
     t.integer  "order_id"
   end
 
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "orders", :force => true do |t|
     t.string   "name"
     t.text     "address"
     t.string   "email"
-    t.string   "pay_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "ip_address"
+    t.string   "card_type"
+    t.date     "card_expires_on"
   end
 
   create_table "products", :force => true do |t|
@@ -61,14 +75,6 @@ ActiveRecord::Schema.define(:version => 20130603191035) do
     t.decimal  "price",       :precision => 8, :scale => 2
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "hashed_password"
-    t.string   "salt"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
 end

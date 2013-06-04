@@ -8,6 +8,8 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'will_paginate'
 gem 'devise'
+gem 'pg', '0.15.0'
+gem 'activemerchant'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,3 +41,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+group :production do
+  gem 'pg', '0.15.0'
+end

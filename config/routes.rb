@@ -1,4 +1,16 @@
 Eshop::Application.routes.draw do
+  get "eshop/careers"
+
+  get "eshop/about"
+
+  get "eshop/help"
+
+  get "eshop/contact"
+
+  get "admin/index"
+
+  get "admin/show"
+
   devise_for :admins
 
   resources :orders

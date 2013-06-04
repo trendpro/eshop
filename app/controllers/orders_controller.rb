@@ -48,6 +48,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+    @order.ip_address = request.remote_ip #yangu
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
@@ -58,10 +59,19 @@ class OrdersController < ApplicationController
         #Fix this error
         #Notifier.order_received(@order).deliver
         
-        format.html { redirect_to(store_url, :notice =>
-                          'Thank you for your order.' ) }
-                          
-        format.json { render json: @order, status: :created, location: @order }
+        #Make Credit card purchase.
+        if @order.purchase
+          format.html { redirect_to(store_url, :notice =>
+                       'Thank you for your purchase.' ) }
+        else
+          render :action => "new",:notice =>
+                       'Purchase was not successful.'
+        end
+        
+        #format.html { redirect_to(store_url, :notice =>
+        #                 'Thank you for your order.' ) }
+        #                  
+        #format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }

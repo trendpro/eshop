@@ -24,25 +24,24 @@
   <body>
 	<%= render 'layouts/general/header' %>	
 	
-	<%= render 'layouts/general/messages' %>
-	
-
     <div class="row">
 		<div class="large-10 columns">
+			<%= render 'layouts/general/messages' %>
 			<%= yield %>
 		</div>
 		
-		<div class="large-2 columns">
-			<h3 class="subheader">My sidebar</h3>
-			<p><%= l Time.now, :format => :short %></p>
+		<% if @cart %>
+			<div class="large-2 columns">
+				<h3 class="subheader">My sidebar</h3>
+				<p><%= l Time.now, :format => :short %></p>
+				
+					<div id="cart" >
+						<%= render @cart %>
+					</div>
 			
-			<% if @cart %>
-				<div id="cart" >
-					<%= render @cart %>
-				</div>
-			<% end %>
-		
-		</div>
+			
+			</div>
+		<% end %>
 	</div>
     
     <%= debug(params) if Rails.env.development? %>

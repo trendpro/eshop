@@ -23,11 +23,30 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, :size => 40 %>
   </div>
+  
   <div class="field">
-    <%= f.label :pay_type %><br />
-    <%= f.select :pay_type, Order::PAYMENT_TYPES,
-				 :prompt => 'Select a payment method' %>
+    <%= f.label :card_type %><br />
+    <%= f.select :card_type, [["Visa", "visa"],["Master Card", "master"],
+    ["Discover", "discover"],["American Express", "american_express"]],
+				 :prompt => 'Select a Card Type' %>
   </div>
+  
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number, :size => 40 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :card_verification, "Card Verification Value (CVV)" %><br />
+    <%= f.text_field :card_verification, :size => 40 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :card_expires_on %><br />
+    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
+   :end_year => Date.today.year+10, :add_month_numbers =>true %>
+  </div>
+  
   <div class="actions">
     <%= f.submit 'Place Order' ,:class => 'button'%>
   </div>

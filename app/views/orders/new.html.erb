@@ -1,11 +1,12 @@
-<h1 class="subheader">Place new order</h1>
-
+<% provide(:title,'Checkout')%>
 <div class="row">
-	<div class="large-2 columns">
-		
+	
+	<div class="large-4 columns">
+		<p></p>
 	</div>
 	
 	<div class="large-6 columns" >
+		<h2 class="subheader">Place new order</h2>
 		<fieldset>
 			<legend>Please Enter Your Details</legend>
 			<%= render 'form' %>
@@ -14,6 +15,6 @@
 		<%= link_to 'Back', orders_path %>
 	</div>
 	<div class="large-2 columns">
-		
+		<p></p>
 	</div>
 </div>

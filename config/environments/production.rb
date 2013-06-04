@@ -64,4 +64,14 @@ Eshop::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "nquincy47-facilitator_api1.gmail.com",
+      :password => "1370368654",
+      :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AoPydXPRpLSu3uZKwDIq38ubK-cB"
+      )
+  end
 end

@@ -48,4 +48,14 @@ Eshop::Application.configure do
     :password => "jIngahII601" ,
     :enable_starttls_auto => true
   }
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "nquincy47-facilitator_api1.gmail.com",
+      :password => "1370368654",
+      :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AoPydXPRpLSu3uZKwDIq38ubK-cB"
+      )
+  end
 end
