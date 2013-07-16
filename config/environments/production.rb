@@ -74,4 +74,14 @@ Eshop::Application.configure do
       :signature => "An5ns1Kso7MWUdW4ErQKJJJ4qi4-AoPydXPRpLSu3uZKwDIq38ubK-cB"
       )
   end
+  
+  # config/environments/production.rb
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['AWS_BUCKET'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 end

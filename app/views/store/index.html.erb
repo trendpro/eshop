@@ -7,7 +7,7 @@
 		<!-- Using both block grids together for different layouts -->
 		  <li>
 		  	<div class="entry" >
-				<%= image_tag(product.image_url) %>
+				<%= link_to image_tag(product.assets.first.asset.url(:large),:class => 'list_image'), product %>
 				<h3><%= product.title %></h3>
 				<%=sanitize truncate(product.description,
 					:length => 60) %>

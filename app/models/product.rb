@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :image_url, :price, :title
+  attr_accessible :description, :price, :title, :assets_attributes ,:asset
+  
+  has_many :assets
+  accepts_nested_attributes_for :assets, :allow_destroy => true
   
   default_scope :order => 'title'
   has_many :line_items
@@ -7,12 +10,9 @@ class Product < ActiveRecord::Base
   
   before_destroy :ensure_not_referenced_by_any_line_item
   
-  validates :title, :description, :image_url, :presence => true
+  validates :title, :description, :presence => true
   validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
   validates :title, :uniqueness => true
-  validates :image_url, :format => {
-    :with=> %r{\.(gif|jpg|png|jpeg)$}i,
-    :message => 'must be a URL for GIF, JPEG, JPG or PNG image.'}
     
   # ensure that there are no line items referencing this product
   def ensure_not_referenced_by_any_line_item

@@ -4,7 +4,7 @@
 		<% @products.each do |product| %>
 		<tr class=" <%= cycle('list_line_odd' , 'list_line_even' ) %>" >
 			<td>
-				<%= image_tag(product.image_url, :class => 'list_image' ) %>
+				<%= link_to image_tag(product.assets.first.asset.url(:large),:class => 'list_image'), product %>
 			</td>
 			
 			<td class="list_description" >

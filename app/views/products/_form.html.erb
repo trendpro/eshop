@@ -19,14 +19,44 @@
     <%= f.label :description %><br />
     <%= f.text_area :description, :rows => 6%>
   </div>
-  <div class="field">
-    <%= f.label :image_url %><br />
-    <%= f.text_field :image_url %>
-  </div>
+
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+  
+  <div class="clearfix">
+    <h4>New Files</h4>
+		
+		<%= f.fields_for :assets do |asset_fields| %>
+		
+			<% if asset_fields.object.new_record? %>
+			<p>
+				<%= asset_fields.file_field :asset %>
+			</p>
+			<% end %>
+		
+		<% end %>
+	</div>
+	
+	<div class="clearfix">
+	    <h4>Your Files</h4>	
+		<ul class="thumbnails">
+			<%= f.fields_for :assets do |asset_fields| %>
+				<% unless asset_fields.object.new_record? %>
+				  <li class="span4">
+				    <div class="thumbnail">
+				      <%= link_to image_tag(asset_fields.object.asset.url(:large)), '#' %>
+					  <%= asset_fields.check_box :_destroy %>	
+				 
+				    </div>
+				  </li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+
+  
   <div class="actions">
     <%= f.submit %>
   </div>

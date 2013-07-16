@@ -9,6 +9,9 @@ gem 'will_paginate'
 gem 'devise'
 gem 'pg', '0.15.0'
 gem 'activemerchant'
+gem 'paperclip', '~> 3.0'
+gem 'rmagick', '2.13.2'
+gem 'aws-sdk', '~> 1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,5 +44,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 group :production do
+  gem 'rmagick', '2.13.2'
   gem 'pg', '0.15.0'
 end

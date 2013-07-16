@@ -11,8 +11,7 @@
 </p>
 
 <p>
-  <b>Image url:</b>
-  <%= @product.image_url %>
+  <%= link_to image_tag(@product.assets.first.asset.url(:large)), @product %>
 </p>
 
 <p>

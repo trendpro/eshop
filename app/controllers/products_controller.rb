@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @products.each do |product|
+      product.assets.build 
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    1.times { @product.assets.build }
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +31,7 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
+    1.times { @product.assets.build }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +42,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    1.times { @product.assets.build }
   end
 
   # POST /products
